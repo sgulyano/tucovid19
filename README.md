@@ -20,4 +20,5 @@
 4. See [`demo_covid_timeline_tu.ipynb`](./demo_covid_timeline_tu.ipynb) for example of how to use Python with Neo4j
 
 ![mockdata](tucovid_mockdata.png)
+
 The above image shows the mock data we used taken from Neo4j Browser. 
