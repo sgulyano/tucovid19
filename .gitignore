@@ -1,0 +1,9 @@
+
+data
+conf
+import
+logs
+plugins
+\.ipynb_checkpoints/
+
+scripts/__pycache__/

@@ -1,0 +1,100 @@
+
+    <html>
+    <head>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+    <div id="fcd5d685-1980-4620-bf62-15ab530ae8ec"></div>
+
+    <script type="text/javascript">
+      var nodes = [{"id": 0, "label": "\u0e40\u0e14\u0e22\u0e4c", "group": "PersonLowRisk", "title": "'\u0e40\u0e14\u0e22\u0e4c'"}, {"id": 13, "label": "Lazy Fat Cat", "group": "Location", "title": "'Lazy Fat Cat'"}, {"id": 1, "label": "\u0e41\u0e2d\u0e19", "group": "PersonLowRisk", "title": "'\u0e41\u0e2d\u0e19'"}, {"id": 12, "label": "Airport", "group": "Location", "title": "'Airport'"}, {"id": 2, "label": "\u0e41\u0e2d\u0e21", "group": "PersonHealthy", "title": "'\u0e41\u0e2d\u0e21'"}, {"id": 10, "label": "TU", "group": "Location", "title": "'TU'"}, {"id": 3, "label": "\u0e41\u0e1b\u0e49\u0e19", "group": "PersonLowRisk", "title": "'\u0e41\u0e1b\u0e49\u0e19'"}, {"id": 14, "label": "Kitchen Cath", "group": "Location", "title": "'Kitchen Cath'"}, {"id": 11, "label": "AI Lab", "group": "Location", "title": "'AI Lab'"}, {"id": 4, "label": "\u0e21\u0e38\u0e49\u0e22", "group": "PersonHighRisk", "title": "'\u0e21\u0e38\u0e49\u0e22'"}, {"id": 9, "label": "\u0e42\u0e22", "group": "PersonPUI", "title": "'\u0e42\u0e22'"}, {"id": 5, "label": "\u0e21\u0e14", "group": "PersonHighRisk", "title": "'\u0e21\u0e14'"}, {"id": 8, "label": "\u0e1b\u0e49\u0e2d\u0e07", "group": "PersonHighRisk", "title": "'\u0e1b\u0e49\u0e2d\u0e07'"}, {"id": 6, "label": "\u0e19\u0e49\u0e33", "group": "PersonHealthy", "title": "'\u0e19\u0e49\u0e33'"}, {"id": 7, "label": "\u0e42\u0e15\u0e49\u0e07", "group": "PersonHealthy", "title": "'\u0e42\u0e15\u0e49\u0e07'"}];
+      var edges = [{"from": 0, "to": 13, "label": "WENT_TO", "color": {"background": "#000000"}}, {"from": 1, "to": 12, "label": "WENT_TO", "color": {"background": "#000000"}}, {"from": 2, "to": 10, "label": "WENT_TO", "color": {"background": "#000000"}}, {"from": 3, "to": 14, "label": "WENT_TO", "color": {"background": "#000000"}}, {"from": 3, "to": 11, "label": "WENT_TO", "color": {"background": "#000000"}}, {"from": 3, "to": 13, "label": "WENT_TO", "color": {"background": "#000000"}}, {"from": 4, "to": 9, "label": "CLOSE_FRIEND", "color": {"background": "#000000"}}, {"from": 5, "to": 8, "label": "CLOSE_FRIEND", "color": {"background": "#000000"}}, {"from": 5, "to": 14, "label": "WENT_TO", "color": {"background": "#000000"}}, {"from": 5, "to": 10, "label": "WENT_TO", "color": {"background": "#000000"}}, {"from": 6, "to": 10, "label": "WENT_TO", "color": {"background": "#000000"}}, {"from": 7, "to": 12, "label": "WENT_TO", "color": {"background": "#000000"}}, {"from": 8, "to": 5, "label": "CLOSE_FRIEND", "color": {"background": "#000000"}}, {"from": 8, "to": 11, "label": "WENT_TO", "color": {"background": "#000000"}}, {"from": 8, "to": 10, "label": "WENT_TO", "color": {"background": "#000000"}}, {"from": 9, "to": 4, "label": "CLOSE_FRIEND", "color": {"background": "#000000"}}, {"from": 9, "to": 10, "label": "WENT_TO", "color": {"background": "#000000"}}];
+
+      var container = document.getElementById("fcd5d685-1980-4620-bf62-15ab530ae8ec");
+
+      var data = {
+        nodes: nodes,
+        edges: edges
+      };
+
+      var options = {
+          nodes: {
+              shape: 'dot',
+              size: 25,
+              font: {
+                  size: 14
+              }
+          },
+          edges: {
+              font: {
+                  size: 14,
+                  align: 'middle'
+              },
+              color: 'gray',
+              arrows: {
+                  to: {enabled: true, scaleFactor: 0.5}
+              },
+              smooth: {enabled: false}
+          },
+          groups: {
+              PersonPUI: {
+                  shape: 'box',
+                  font: {
+                      size: 38,
+                      color: '#ffffff'
+                  },
+                  margin: 7,
+                  color: {
+                      background: '#6600ff',
+                  }
+              },
+              PersonHighRisk: {
+                  shape: 'circle',
+                  font: {
+                      size: 25,
+                  },
+                  color: {
+                      background: '#ff5050',
+                  }
+              },
+              PersonLowRisk: {
+                  shape: 'circle',
+                  font: {
+                      size: 25,
+                  },
+                  color: {
+                      background: 'orange',
+                  }
+              },
+              PersonHealthy: {
+                  shape: 'circle',
+                  font: {
+                      size: 25,
+                  },
+                  color: {
+                      background: '#99ff99',
+                  }
+              },
+              Location: {
+                  shape: 'ellipse',
+                  font: {
+                      size: 20,
+                  },
+                  color: {
+                      background: '#66ccff',
+                  }
+              }
+          },
+          physics: {
+              enabled: true
+          }
+      };
+
+      var network = new vis.Network(container, data, options);
+
+    </script>
+    </body>
+    </html>
+    
