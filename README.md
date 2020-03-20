@@ -17,7 +17,7 @@
     ```
     Run pip install -r requirements.txt
     ```
-4. See [`demo_covid_timeline_tu.ipynb`](./demo_covid_timeline_tu.ipynb) for example of how to use Python with Neo4j
+4. See [`demo_covid_data.ipynb`](./demo_covid_data.ipynb) for example of how to use Python with Neo4j
 
 ![mockdata](tucovid_mockdata.png)
 
