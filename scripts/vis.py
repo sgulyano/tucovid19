@@ -44,10 +44,10 @@ def vis_network(nodes, edges, physics=False):
               smooth: {{enabled: false}}
           }},
           groups: {{
-              PersonPUI: {{
+              PUIPerson: {{
                   shape: 'box',
                   font: {{
-                      size: 38,
+                      size: 16,
                       color: '#ffffff'
                   }},
                   margin: 7,
@@ -55,37 +55,37 @@ def vis_network(nodes, edges, physics=False):
                       background: '#6600ff',
                   }}
               }},
-              PersonHighRisk: {{
-                  shape: 'circle',
+              HighRiskPerson: {{
+                  shape: 'ellipse',
                   font: {{
-                      size: 25,
+                      size: 14,
                   }},
                   color: {{
                       background: '#ff5050',
                   }}
               }},
-              PersonLowRisk: {{
-                  shape: 'circle',
+              LowRiskPerson: {{
+                  shape: 'ellipse',
                   font: {{
-                      size: 25,
+                      size: 12,
                   }},
                   color: {{
                       background: 'orange',
                   }}
               }},
-              PersonHealthy: {{
-                  shape: 'circle',
+              HealthyPerson: {{
+                  shape: 'ellipse',
                   font: {{
-                      size: 25,
+                      size: 12,
                   }},
                   color: {{
                       background: '#99ff99',
                   }}
               }},
               Location: {{
-                  shape: 'ellipse',
+                  shape: 'circle',
                   font: {{
-                      size: 20,
+                      size: 12,
                   }},
                   color: {{
                       background: '#66ccff',
