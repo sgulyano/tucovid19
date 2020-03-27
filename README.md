@@ -19,6 +19,11 @@
     ```
 4. See [`demo_covid_data.ipynb`](./demo_covid_data.ipynb) for example of how to use Python with Neo4j
 
+5. Set environment variable
+https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#setting-environment-variables
+
+
+
 ![mockdata](tucovid_mockdata.png)
 
 The above image shows the mock data we used taken from Neo4j Browser. 

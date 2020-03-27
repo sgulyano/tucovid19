@@ -7,3 +7,11 @@ plugins
 \.ipynb_checkpoints/
 
 scripts/__pycache__/
+
+Report form for TU \(การตอบกลับ\)\.xlsx
+
+bb\.json
+
+Daily\.json
+
+user\.json
