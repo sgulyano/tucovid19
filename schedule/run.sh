@@ -1,7 +1,7 @@
 #!/bin/bash
 source /home/tucovid/miniconda/etc/profile.d/conda.sh && \
 conda activate covid-19 && \
-python /home/tucovid/tucovid19/schedule/pulldata.py
+python /home/tucovid/tucovid19/schedule/pulldata_dump.py
 
 #Make this file executable
 #chmod +x run.sh
