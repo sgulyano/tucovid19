@@ -2,6 +2,7 @@ import requests
 import json
 import os
 import pandas as pd
+import time
 from datetime import datetime, timedelta
 from neo4j import GraphDatabase, exceptions
 
@@ -19,8 +20,8 @@ def load_data_from_api(api, headers = headers):
         print('GET /{}/ {} OK'.format(api, resp.status_code))
         return resp.json()
     except Exception as e:
-        print(e)
-        return None
+        time.sleep(1)
+        return load_data_from_api(api)
 
 # get data in json format from API
 json_user = load_data_from_api('user')
@@ -108,7 +109,7 @@ def update_color(driver, param, DATE_THR=timedelta(days=14)):
                         needUpdate = False
                 # to reduce level, must pass date threshold and new date is greater
                 elif (COLOR_MAP[rec['a.color']] > COLOR_MAP[param['COLOR']]):
-                    if datetime.now() - convert_str_date(rec['a.color_date']) > DATE_THR and \
+                    if convert_str_date(param['Create_date']) - convert_str_date(rec['a.color_date']) > DATE_THR and \
                             convert_str_date(rec['a.color_date']) < convert_str_date(param['Create_date']):
                         needUpdate = True
                     else:
@@ -153,7 +154,6 @@ for index, row in locforms.iterrows():
 # put time stamp
 with driver.session() as session:
     rec = session.run("MATCH (a:UpdateTime)  RETURN a.updatetime").single()
-    print(rec['a.updatetime'])
     if rec:
         session.run("MATCH (a:UpdateTime)  SET a.updatetime = $updatetime", {'updatetime':datetime.now().strftime('%Y-%m-%d %H:%M:%S')})
     else:
