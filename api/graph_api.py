@@ -13,8 +13,6 @@ class CovidGraphDB(Resource):
         
     def get_node_edges(self):
         uri = "bolt://neo4j:7687"
-        print(os.environ['NEO4J_USERNAME'])
-        print(os.environ['NEO4J_PASSWORD'])
         driver = GraphDatabase.driver(uri, auth=(os.environ['NEO4J_USERNAME'], os.environ['NEO4J_PASSWORD']), encrypted=False)
 
         with driver.session() as session:
