@@ -1,4 +1,0 @@
-neo4j
-neo4j-driver
-py2neo
-requests
