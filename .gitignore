@@ -15,3 +15,7 @@ bb\.json
 Daily\.json
 
 user\.json
+
+api/__pycache__/
+
+json/
