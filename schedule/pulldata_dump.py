@@ -195,7 +195,7 @@ def get_edge_info(edge, p_info, m_info):
     else:
         return {"from": p_info["id"], "to": m_info["id"], "label": edge.type}
 
-
+# get the whole graph
 with driver.session() as session:
     result = session.run("""MATCH (p:Person)
                             OPTIONAL MATCH (p:Person)-[a]->(m)
@@ -220,5 +220,33 @@ for record in result:
         edges.append(get_edge_info(record['a'], p_info, m_info))
 
 # json.dumps({'nodes':nodes, 'edges':edges})
-with open('../../json/result.json', 'w') as outfile:
+with open(os.environ['OUTPUT_FOLDER'] + 'json/result.json', 'w') as outfile:
     json.dump({'nodes':nodes, 'edges':edges, 'timestamp':rec['a.updatetime']}, outfile)
+
+
+# get only PUI and high risk group
+with driver.session() as session:
+    result = session.run("""MATCH (p:Person)
+                            WHERE p.color IN ['สีแดง', 'สีส้ม', 'สีม่วง']
+                            OPTIONAL MATCH (p:Person)-[a]->(m)
+                            RETURN  p, labels(p), a, m, labels(m);""")
+    
+nodes = []
+edges = []
+physics = True
+
+for record in result:
+    p_info = get_node_info(record['p'], record['labels(p)'][0])
+    
+    if p_info not in nodes:
+        nodes.append(p_info)
+         
+    if record['m']:
+        m_info = get_node_info(record['m'], record['labels(m)'][0])
+        if m_info not in nodes:
+            nodes.append(m_info)
+
+        edges.append(get_edge_info(record['a'], p_info, m_info))
+
+with open(os.environ['OUTPUT_FOLDER'] + 'result_filter.json', 'w') as outfile:
+    json.dump({'nodes':nodes, 'edges':edges, 'timestamp':str(datetime.now())}, outfile)
