@@ -170,7 +170,6 @@ def get_node_info(node, gr):
                }
     elif 'Person' in gr:
         return {"id": node.id,
-                "db_id": node['id'],
                 "group": gr, 
                 "label": node.id,
                 "color": node['color'],
@@ -220,7 +219,7 @@ for record in result:
         edges.append(get_edge_info(record['a'], p_info, m_info))
 
 # json.dumps({'nodes':nodes, 'edges':edges})
-with open(os.environ['OUTPUT_FOLDER'] + 'json/result.json', 'w') as outfile:
+with open(os.environ['OUTPUT_FOLDER'] + 'result.json', 'w') as outfile:
     json.dump({'nodes':nodes, 'edges':edges, 'timestamp':rec['a.updatetime']}, outfile)
 
 
