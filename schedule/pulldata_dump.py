@@ -247,5 +247,25 @@ for record in result:
 
         edges.append(get_edge_info(record['a'], p_info, m_info))
 
+with driver.session() as session:
+    result = session.run("""MATCH (p:Person)-[a]->(m)
+                            WHERE p.color IN ['สีแดง', 'สีส้ม', 'สีม่วง']
+                            OPTIONAL MATCH (p:Person)-[a]->(m)<-[b]-(q:Person)
+                            RETURN p, labels(p), a, m, labels(m), b, q, labels(q);""")
+
+for record in result:
+    if record['q']:
+        q_info = get_node_info(record['q'], record['labels(q)'][0])
+        if q_info not in nodes:
+            nodes.append(q_info)
+
+        m_info = get_node_info(record['m'], record['labels(m)'][0])
+        if m_info not in nodes:
+            nodes.append(m_info)
+        
+        b_info = get_edge_info(record['b'], q_info, m_info)
+        if b_info not in edges:
+            edges.append(b_info)
+
 with open(os.environ['OUTPUT_FOLDER'] + 'result_filter.json', 'w') as outfile:
-    json.dump({'nodes':nodes, 'edges':edges, 'timestamp':str(datetime.now())}, outfile)
+    json.dump({'nodes':nodes, 'edges':edges, 'timestamp':rec['a.updatetime']}, outfile)
